@@ -1,0 +1,153 @@
+<!DOCTY "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xht />
+<title>ZZAS_P006_TOP</title>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZZAS_P006_TOP</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ZZAS_P006_TOP<br />
+*&---------------------------------------------------------------------*<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+tables: zzas_t06.<br />
+data: go_alv type ref to cl_gui_alv_grid,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;go_cont&nbsp;type&nbsp;ref&nbsp;to&nbsp;cl_gui_custom_container.<br />
+<br />
+<br />
+   </div>
+   <div class="codeComment">
+*data:&nbsp;begin&nbsp;of&nbsp;gt_t06&nbsp;occurs&nbsp;0,<br />
+*&nbsp;&nbsp;&nbsp;&nbsp;PERMFORMNO&nbsp;type&nbsp;zzas_t06-permformno,<br />
+*&nbsp;&nbsp;ZREM&nbsp;type&nbsp;zzas_t06-zrem,<br />
+*&nbsp;&nbsp;PMAIL&nbsp;type&nbsp;zzas_t06-pmail,<br />
+*&nbsp;&nbsp;STATUS&nbsp;type&nbsp;zzas_t06-status,<br />
+*&nbsp;&nbsp;end&nbsp;of&nbsp;gt_t06.<br />
+<br />
+<br />
+   </div>
+   <div class="code">
+types: begin of gty_t06,<br />
+&nbsp;&nbsp;PERMFORMNO&nbsp;type&nbsp;ZZPRM_IZINFORMNO_DE,<br />
+&nbsp;&nbsp;ZREM&nbsp;type&nbsp;AD_REMARK2,<br />
+&nbsp;&nbsp;PMAIL&nbsp;type&nbsp;ZZPRM_PNSURN_DE,<br />
+&nbsp;&nbsp;STATUS&nbsp;type&nbsp;ZZPRM_STATU_DEE,<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;&nbsp;status_text&nbsp;&nbsp;type&nbsp;ddtext&nbsp;&nbsp;,<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;end&nbsp;of&nbsp;gty_t06.<br />
+<br />
+<br />
+TYPES: BEGIN of lty_value_tab,<br />
+&nbsp;&nbsp;status&nbsp;type&nbsp;zzas_t06-status,<br />
+&nbsp;&nbsp;status_text&nbsp;type&nbsp;ddtext,<br />
+&nbsp;&nbsp;end&nbsp;of&nbsp;lty_value_tab.<br />
+<br />
+&nbsp;&nbsp;data:&nbsp;lt_value_tab&nbsp;type&nbsp;table&nbsp;of&nbsp;lty_value_tab,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ls_value_tab&nbsp;type&nbsp;lty_value_tab.<br />
+<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;data:&nbsp;lt_return_tab&nbsp;type&nbsp;table&nbsp;of<br />
+<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;clear:&nbsp;ls_value_tab.<br />
+&nbsp;&nbsp;ls_value_tab-status&nbsp;=&nbsp;'01'.<br />
+&nbsp;&nbsp;ls_value_tab-status_text&nbsp;=&nbsp;'Mail&nbsp;talebi&nbsp;oluþturuldu'.<br />
+&nbsp;&nbsp;append&nbsp;ls_value_tab&nbsp;to&nbsp;lt_value_tab.<br />
+<br />
+&nbsp;&nbsp;clear:&nbsp;ls_value_tab.<br />
+&nbsp;&nbsp;ls_value_tab-status&nbsp;=&nbsp;'02'.<br />
+&nbsp;&nbsp;ls_value_tab-status_text&nbsp;=&nbsp;'Onaylandý'.<br />
+&nbsp;&nbsp;append&nbsp;ls_value_tab&nbsp;to&nbsp;lt_value_tab.<br />
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;clear:&nbsp;ls_value_tab.<br />
+&nbsp;&nbsp;ls_value_tab-status&nbsp;=&nbsp;'03'.<br />
+&nbsp;&nbsp;ls_value_tab-status_text&nbsp;=&nbsp;'Reddedildi'.<br />
+&nbsp;&nbsp;append&nbsp;ls_value_tab&nbsp;to&nbsp;lt_value_tab.<br />
+<br />
+<br />
+CALL FUNCTION 'F4IF_INT_TABLE_VALUE_REQUEST'<br />
+&nbsp;&nbsp;EXPORTING<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;DDIC_STRUCTURE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;retfield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'STATUS'<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;PVALKEY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;DYNPPROG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;DYNPNR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;DYNPROFIELD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;STEPL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0<br />
+*&nbsp;&nbsp;&nbsp;WINDOW_TITLE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;VALUE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;VALUE_ORG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'C'<br />
+*&nbsp;&nbsp;&nbsp;MULTIPLE_CHOICE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;DISPLAY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;CALLBACK_PROGRAM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;CALLBACK_FORM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;'&nbsp;'<br />
+*&nbsp;&nbsp;&nbsp;CALLBACK_METHOD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;MARK_TAB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;IMPORTING<br />
+*&nbsp;&nbsp;&nbsp;USER_RESET&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;tables<br />
+&nbsp;&nbsp;&nbsp;&nbsp;value_tab&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;lt_value_tab<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;&nbsp;&nbsp;FIELD_TAB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;RETURN_TAB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;&nbsp;&nbsp;DYNPFLD_MAPPING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=<br />
+*&nbsp;EXCEPTIONS<br />
+*&nbsp;&nbsp;&nbsp;PARAMETER_ERROR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;1<br />
+*&nbsp;&nbsp;&nbsp;NO_VALUES_FOUND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;2<br />
+*&nbsp;&nbsp;&nbsp;OTHERS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;3<br />
+   </div>
+   <div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.<br />
+IF sy-subrc &lt;&gt; 0.<br />
+   </div>
+   <div class="codeComment">
+*&nbsp;Implement&nbsp;suitable&nbsp;error&nbsp;handling&nbsp;here<br />
+   </div>
+   <div class="code">
+ENDIF.<br />
+<br />
+<br />
+<br />
+<br />
+data:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_t06&nbsp;type&nbsp;table&nbsp;of&nbsp;gty_t06,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_t06&nbsp;type&nbsp;gty_t06,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gt_fcat&nbsp;type&nbsp;lvc_t_fcat,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_fcat&nbsp;type&nbsp;lvc_s_fcat,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gs_layout&nbsp;type&nbsp;lvc_s_layo.<br />
+<br />
+<br />
+FIELD-SYMBOLS: &lt;gfs_fcat&gt; type lvc_s_fcat.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
